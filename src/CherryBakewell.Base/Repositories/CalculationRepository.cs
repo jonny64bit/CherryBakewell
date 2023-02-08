@@ -2,6 +2,7 @@
 using CherryBakewell.Database;
 using CherryBakewell.Database.Models;
 using Dapper;
+using Dapper.Contrib.Extensions;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,18 +19,10 @@ namespace CherryBakewell.Base.Repositories
 
         public async Task AddAsync(Calculation calculation)
         {
-            const string sql = "INSERT INTO Calculation ([InputA], [InputB], [Operator], [Answer]) VALUES (@InputA, @InputB, @Operator, @Answer)";
             using (var connection = new SqlConnection(Context.Database.GetConnectionString()))
             {
                 await connection.OpenAsync();
-                await connection.ExecuteAsync(sql, 
-                    new 
-                    { 
-                        calculation.InputA,
-                        calculation.InputB,
-                        calculation.Operator,
-                        calculation.Answer
-                    });
+                await connection.InsertAsync(calculation);
             }
         }
 
