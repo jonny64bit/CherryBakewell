@@ -1,8 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using PhoneBook.Database;
-using PhoneBook.Database.Models;
+using CherryBakewell.Database;
 
 //-----------------------------------------------
 //This is just a quick and dirty method of fast prototyping entity framework schemas and migrations.
@@ -12,8 +11,8 @@ using PhoneBook.Database.Models;
 const string host = "localhost";
 
 //Set the database user account here
-const string databaseName = "WeDoPhoneBook";
-const string user = "WeDoPhoneBook";
+const string databaseName = "CherryBakewell";
+const string user = "CherryBakewell";
 
 // ReSharper disable once StringLiteralTypo
 const string password = "Zl8089dAK5WJFNYD765IJD";
@@ -34,7 +33,6 @@ services.AddDbContext<DAL>(options =>
 var provider = services.BuildServiceProvider();
 var context = provider.GetRequiredService<DAL>();
 await context.Database.MigrateAsync();
-await Seed(context);
 
 static async Task SetupDatabase()
 {
@@ -69,27 +67,4 @@ static async Task SetupDatabase()
             }
         }
     }
-}
-
-static async Task Seed(DAL context)
-{
-    //Instead of seeding here you could do this in database migrations.
-    //Really if its only data for testing/development i like to keep it out of migrations.
-    await context.Contacts.AddRangeAsync(new List<Contact>
-    {
-        new()
-        {
-            FirstName = "Eric",
-            LastName = "Elliot",
-            PhoneNumber = "222-555-6754"
-        },
-        new()
-        {
-            FirstName = "Steve",
-            LastName = "Jobs",
-            PhoneNumber = "202-454-3245"
-        }
-    });
-
-    await context.SaveChangesAsync();
 }
