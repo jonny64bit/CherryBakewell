@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="~/dist/style.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/dist/styles.css" asp-append-version="true"/>
 </head>
 <body>
 <div class="container">
@@ -12,7 +12,9 @@
         @RenderBody()
     </main>
 </div>
-<script src="~/dist/phonebook-web.umd.js" asp-append-version="true"></script>
+<script src="~/dist/runtime.js" asp-append-version="true"></script>
+<script src="~/dist/polyfills.js" asp-append-version="true"></script>
+<script src="~/dist/vendor.js" asp-append-version="true"></script>
 @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

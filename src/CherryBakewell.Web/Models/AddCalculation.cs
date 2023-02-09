@@ -1,6 +1,6 @@
-﻿using CherryBakewell.Database.Models;
+using CherryBakewell.Database.Models;
 
-namespace PhoneBook.Web.Models
+namespace CherryBakewell.Web.Models
 {
     public class AddCalculation
     {

@@ -3,6 +3,8 @@ using CherryBakewell.Base;
 using Microsoft.EntityFrameworkCore;
 using CherryBakewell.Database;
 using CherryBakewell.Web.Helpers;
+using CherryBakewell.Base.Interfaces.Repository;
+using CherryBakewell.Base.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +20,7 @@ builder.Services.AddDbContext<DAL>(options =>
 
 //Add dependency injection.
 builder.Services.AddTransient<IService, Service>();
+builder.Services.AddTransient<ICalculationRepository, CalculationRepository>();
 
 //Auto Mapper
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));

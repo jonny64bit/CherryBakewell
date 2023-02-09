@@ -1,0 +1,26 @@
+version: '3.4'
+services:
+  cherrybakewell.web:
+    image: ${DOCKER_REGISTRY-}cherrybakewellweb
+    build:
+      context: .
+      dockerfile: src/CherryBakewell.Web/Dockerfile
+    depends_on:
+      - mssql
+    networks: 
+      - cherrybakewell
+
+  mssql:
+    container_name: cherrybakewell.mssql
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=SqlServer2022
+    networks: 
+      - cherrybakewell
+
+networks:
+  cherrybakewell:
+    driver: bridge

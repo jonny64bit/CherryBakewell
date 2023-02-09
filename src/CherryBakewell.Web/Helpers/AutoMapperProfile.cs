@@ -1,5 +1,6 @@
-﻿using AutoMapper;
-using PhoneBook.Web.Models;
+using AutoMapper;
+using CherryBakewell.Database.Models;
+using CherryBakewell.Web.Models;
 
 namespace CherryBakewell.Web.Helpers
 {

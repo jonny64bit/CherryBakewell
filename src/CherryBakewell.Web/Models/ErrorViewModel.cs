@@ -1,4 +1,4 @@
-namespace PhoneBook.Web.Models;
+namespace CherryBakewell.Web.Models;
 
 public class ErrorViewModel
 {
