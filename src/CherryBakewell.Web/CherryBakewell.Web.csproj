@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <UserSecretsId>73f38b6c-2b54-4937-b641-6422ce2cf786</UserSecretsId>
+        <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Content Include="..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.2">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\CherryBakewell.Base\CherryBakewell.Base.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="src\" />
+      <Folder Include="wwwroot\dist\" />
+    </ItemGroup>
+
+</Project>

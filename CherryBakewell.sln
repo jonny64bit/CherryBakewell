@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseQuickCreateAndMigra
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{2F995EFB-1E6A-41F2-8DE6-F4287509ABC6}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CherryBakewell.Web", "src\CherryBakewell.Web\CherryBakewell.Web.csproj", "{7CDB6E37-C101-44C0-9DC3-A5F88FEFBC4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{AE47916C-81D8-4F16-8EE6-CC73F67EC217}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE47916C-81D8-4F16-8EE6-CC73F67EC217}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE47916C-81D8-4F16-8EE6-CC73F67EC217}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CDB6E37-C101-44C0-9DC3-A5F88FEFBC4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CDB6E37-C101-44C0-9DC3-A5F88FEFBC4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CDB6E37-C101-44C0-9DC3-A5F88FEFBC4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CDB6E37-C101-44C0-9DC3-A5F88FEFBC4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
