@@ -35,6 +35,7 @@ ng build
 - Missing security hardening or any authentication
 - Only got default BS5 theme
 - Validation would need to be added
+- Logging & propper error handling missing
 - I would generally split up the angular side into more components
 
 ### Disclaimer 🤣
