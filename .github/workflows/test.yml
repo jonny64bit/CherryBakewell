@@ -1,0 +1,43 @@
+name: test
+
+on:
+  [push, pull_request]
+
+permissions:
+  id-token: write
+  contents: read
+  checks: write
+
+jobs:
+  test-dotnet:
+    name: test dotnet
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set environment variables
+        run: |
+            echo "DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true" >> $GITHUB_ENV
+            echo "DOTNET_CLI_TELEMETRY_OPTOUT=true" >> $GITHUB_ENV
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+           dotnet-version: '7.0.x'
+        
+      - name: Restore
+        run: dotnet restore CherryBakewell.sln
+        
+      - name: Build
+        run: dotnet build CherryBakewell.sln -c Debug --no-restore
+       
+      - name: Test
+        run: dotnet test CherryBakewell.sln -c Debug --no-restore --logger "trx;LogFileName=test-results.trx"
+        
+      - name: Report Results
+        uses: dorny/test-reporter@v1
+        if: success() || failure()
+        with:
+          name: .NET Results
+          path: src/**/*.trx
+          reporter: dotnet-trx
