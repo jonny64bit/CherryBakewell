@@ -33,7 +33,7 @@ public class DAL : DbContext
         {
             entity.HasKey(x => x.Id);
             entity.Property(x => x.Id).UseIdentityColumn();
-            entity.ToTable(nameof(Calculation));
+            entity.ToTable("Calculations");
         });
     }
 }

@@ -26,9 +26,10 @@ namespace CherryBakewell.Base.Repositories
             }
         }
 
+        //This method isn't needed in the end but keep it here any way to give us something else to talk about.
         public async Task<List<Calculation>> GetLast(int amount = 5)
         {
-            const string sql = "SELECT TOP (@Amount) * FROM Calculation ORDER BY Order DESC";
+            const string sql = "SELECT TOP (@Amount) * FROM Calculations ORDER BY Order DESC";
             using (var connection = new SqlConnection(Context.Database.GetConnectionString()))
             {
                 await connection.OpenAsync();
