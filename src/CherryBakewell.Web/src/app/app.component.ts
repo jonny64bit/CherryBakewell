@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 enum Operator {
   Add = 0,
@@ -15,17 +15,20 @@ enum Stage {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   display = '0';
   currentNumber = 0;
   operatorEnum = Operator;
   stage = Stage.FirstNumber;
 
+
   inputA: null | number = null;
   inputB: null | number = null;
   operator: null | Operator = null;
+
+  history: Array<History> = [];
 
   numberClick = (value: number) => {
     if (this.currentNumber == 0) this.currentNumber = value;
@@ -74,6 +77,13 @@ export class AppComponent {
   }
 
   recordValue = async (newValue: number) => {
+    this.saveHistory({
+      inputA: this.inputA,
+      inputB: this.inputB,
+      operator: this.operator,
+      answer: newValue
+    })
+
     await fetch("/api/data/add-calculation", {
       method: "POST",
       cache: "no-cache",
@@ -101,4 +111,43 @@ export class AppComponent {
   refreshDisplay = () => {
     this.display = this.currentNumber.toString();
   }
+
+  saveHistory = (add: History) => {
+    this.history.push(add);
+    if (this.history.length > 5)
+      this.history.shift();
+    localStorage.setItem("history", JSON.stringify(this.history));
+  }
+
+  operatorDisplayValue = (operator: Operator | null): string => {
+    if (operator == Operator.Add) return "+";
+    if (operator == Operator.Minus) return "–";
+    if (operator == Operator.Multiply) return "×";
+    if (operator == Operator.Divide) return "÷";
+    return "?";
+  }
+
+  ngOnInit() {
+    let rawHistory = localStorage.getItem("history");
+    if (rawHistory != null)
+      this.history = JSON.parse(rawHistory);
+  }
+
+  restoreValue(answer: number | null) {
+    if(answer == null) return;
+    this.inputA = answer;
+    this.inputB = null;
+    this.operator = null;
+    this.stage = Stage.FirstNumber;
+    this.currentNumber = answer;
+    this.refreshDisplay();
+  }
+}
+
+//This should be in its own file really.
+interface History {
+  inputA: number | null;
+  inputB: number | null;
+  operator: Operator | null;
+  answer: number | null;
 }
